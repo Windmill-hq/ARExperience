@@ -117,7 +117,6 @@ public class ARActivity extends Activity implements ARScene.Listener {
 
     @Override
     public void onAnchorUpdated(ARAnchor arAnchor, ARNode arNode) {
-//        Log.e(TAG, "onAnchorUpdated");
     }
 
     @Override
