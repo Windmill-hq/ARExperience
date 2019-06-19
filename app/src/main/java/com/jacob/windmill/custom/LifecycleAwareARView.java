@@ -11,25 +11,25 @@ import android.util.AttributeSet;
 import com.viro.core.RendererConfiguration;
 import com.viro.core.ViroViewARCore;
 
-public class ViroViewARCoreLifecycleAware extends ViroViewARCore implements LifecycleObserver {
+public class LifecycleAwareARView extends ViroViewARCore implements LifecycleObserver {
 
-    public ViroViewARCoreLifecycleAware(@NonNull Context context, @Nullable StartupListener startupListener) {
+    public LifecycleAwareARView(@NonNull Context context, @Nullable StartupListener startupListener) {
         super(context, startupListener);
     }
 
-    public ViroViewARCoreLifecycleAware(@NonNull Context context, @Nullable StartupListener startupListener, @Nullable RendererConfiguration config) {
+    public LifecycleAwareARView(@NonNull Context context, @Nullable StartupListener startupListener, @Nullable RendererConfiguration config) {
         super(context, startupListener, config);
     }
 
-    public ViroViewARCoreLifecycleAware(@NonNull Context context) {
+    public LifecycleAwareARView(@NonNull Context context) {
         super(context);
     }
 
-    public ViroViewARCoreLifecycleAware(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public LifecycleAwareARView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ViroViewARCoreLifecycleAware(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public LifecycleAwareARView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
