@@ -61,6 +61,7 @@ public class ARPortal implements LifecycleObserver {
         portalScene = new PortalScene();
         portalScene.setPortalEntrance(portal);
         portalScene.setPassable(true);
+        portalScene.setScale(new Vector(0.8, 0.8, 0.8));
 
         mSound = new Sound(viroContext, Uri.parse(portalBkgSound), null);
         mSound.setLoop(true);

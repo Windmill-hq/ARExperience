@@ -17,8 +17,8 @@ import com.viro.core.ViroViewARCore;
 public class ARActivity extends AppCompatActivity implements ViroViewARCore.StartupListener {
     public static final String TAG = "EXPERIMENT";
     private static final String PORTAL_MODEL = "file:///android_asset/portal_wood_frame.vrx";
-    private static final String BEACH_NOISE = "file:///android_asset/beach_noise.mp3";
-    private static final String PORTAL_BKG_ASSET = "360_waikiki.jpg";
+    private static final String BEACH_NOISE = "file:///android_asset/hurricane.mp3";
+    private static final String PORTAL_BKG_ASSET = "canyon.jpg";
     private LifecycleAwareARView mARView;
     private boolean planesFound = false;
     private ARPortal beachPortal;
@@ -49,7 +49,7 @@ public class ARActivity extends AppCompatActivity implements ViroViewARCore.Star
         mARView.setScene(scene);
         mARView.getScene().getRootNode().addLight(Utils.createLight());
 
-        beachPortal.show(mARView.getScene(), new Vector(0, 0, -1));
+        beachPortal.show(mARView.getScene(), new Vector(0, 0, -2));
     }
 
     private ARScene createScene() {
