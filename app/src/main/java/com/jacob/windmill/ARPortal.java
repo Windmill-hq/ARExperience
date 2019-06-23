@@ -18,18 +18,18 @@ import com.viro.core.Vector;
 import com.viro.core.ViroContext;
 
 public class ARPortal implements LifecycleObserver {
-    private final String portalAsset;
-    private final String portalBkgSound;
-    private final String portalBkgAsset;
+    private final String mPortalAsset;
+    private final String mPortalBkgSound;
+    private final String mPortalBkgAsset;
     private final ViroContext viroContext;
     private final Resources resources;
     private boolean soundWasRan = false;
     private Sound mSound;
 
     public ARPortal(String portalAsset, String portalBkgSound, String portalBkgAsset, ViroContext viroContext, Resources resources) {
-        this.portalAsset = portalAsset;
-        this.portalBkgSound = portalBkgSound;
-        this.portalBkgAsset = portalBkgAsset;
+        this.mPortalAsset = portalAsset;
+        this.mPortalBkgSound = portalBkgSound;
+        this.mPortalBkgAsset = portalBkgAsset;
         this.viroContext = viroContext;
         this.resources = resources;
     }
@@ -51,21 +51,20 @@ public class ARPortal implements LifecycleObserver {
     }
 
     void show(Scene scene, Vector vector) {
-        mSound = new Sound(viroContext, Uri.parse(portalBkgSound), null);
+        mSound = new Sound(viroContext, Uri.parse(mPortalBkgSound), null);
         mSound.setLoop(true);
         mSound.setVolume(1f);
 
-        PortalScene mainPortal = buildPortalScene(portalBkgAsset);
+        PortalScene mainPortal = buildPortalScene(mPortalBkgAsset);
         mainPortal.setPosition(vector);
         scene.getRootNode().addChildNode(mainPortal);
     }
 
     private PortalScene buildPortalScene(String portalBkgAsset) {
         Object3D model = new Object3D();
-        model.loadModel(viroContext, Uri.parse(portalAsset), Object3D.Type.FBX, null);
+        model.loadModel(viroContext, Uri.parse(mPortalAsset), Object3D.Type.FBX, null);
         Portal portal = new Portal();
         portal.addChildNode(model);
-
 
         PortalScene portalScene = new PortalScene();
         portalScene.setPortalEntrance(portal);

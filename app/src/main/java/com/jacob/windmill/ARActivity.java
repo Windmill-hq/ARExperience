@@ -17,7 +17,7 @@ import com.viro.core.ViroViewARCore;
 public class ARActivity extends AppCompatActivity implements ViroViewARCore.StartupListener {
     public static final String TAG = "EXPERIMENT";
     private static final String PORTAL_MODEL = "file:///android_asset/portal_wood_frame.vrx";
-    private static final String BEACH_NOISE = "file:///android_asset/hurricane.mp3";
+    private static final String CANYON_SOUND = "file:///android_asset/canyon_wind.mp3";
     private static final String PORTAL_BKG_ASSET = "canyon.jpg";
     private LifecycleAwareARView mARView;
     private boolean planesFound = false;
@@ -27,7 +27,7 @@ public class ARActivity extends AppCompatActivity implements ViroViewARCore.Star
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mARView = new LifecycleAwareARView(this, this);
-        beachPortal = new ARPortal(PORTAL_MODEL, BEACH_NOISE, PORTAL_BKG_ASSET, mARView.getViroContext(), getResources());
+        beachPortal = new ARPortal(PORTAL_MODEL, CANYON_SOUND, PORTAL_BKG_ASSET, mARView.getViroContext(), getResources());
         setContentView(mARView);
         getLifecycle().addObserver(mARView);
         getLifecycle().addObserver(beachPortal);
