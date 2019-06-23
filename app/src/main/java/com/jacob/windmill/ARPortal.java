@@ -24,7 +24,6 @@ public class ARPortal implements LifecycleObserver {
     private final ViroContext viroContext;
     private final Resources resources;
     private boolean soundWasRan = false;
-    private PortalScene portalScene;
     private Sound mSound;
 
     public ARPortal(String portalAsset, String portalBkgSound, String portalBkgAsset, ViroContext viroContext, Resources resources) {
@@ -51,21 +50,27 @@ public class ARPortal implements LifecycleObserver {
         if (mSound != null) mSound.dispose();
     }
 
-    public void show(Scene scene, Vector vector) {
+    void show(Scene scene, Vector vector) {
+        mSound = new Sound(viroContext, Uri.parse(portalBkgSound), null);
+        mSound.setLoop(true);
+        mSound.setVolume(1f);
 
+        PortalScene mainPortal = buildPortalScene(portalBkgAsset);
+        mainPortal.setPosition(vector);
+        scene.getRootNode().addChildNode(mainPortal);
+    }
+
+    private PortalScene buildPortalScene(String portalBkgAsset) {
         Object3D model = new Object3D();
         model.loadModel(viroContext, Uri.parse(portalAsset), Object3D.Type.FBX, null);
         Portal portal = new Portal();
         portal.addChildNode(model);
 
-        portalScene = new PortalScene();
+
+        PortalScene portalScene = new PortalScene();
         portalScene.setPortalEntrance(portal);
         portalScene.setPassable(true);
         portalScene.setScale(new Vector(0.8, 0.8, 0.8));
-
-        mSound = new Sound(viroContext, Uri.parse(portalBkgSound), null);
-        mSound.setLoop(true);
-        mSound.setVolume(1f);
 
         portalScene.setEntryListener(new PortalScene.EntryListener() {
             @Override
@@ -83,8 +88,6 @@ public class ARPortal implements LifecycleObserver {
         Bitmap bkg = Utils.getBitmapFromAssets(portalBkgAsset, resources);
         Texture texture = new Texture(bkg, Texture.Format.RGBA8, true, false);
         portalScene.setBackgroundTexture(texture);
-
-        portalScene.setPosition(vector);
-        scene.getRootNode().addChildNode(portalScene);
+        return portalScene;
     }
 }
